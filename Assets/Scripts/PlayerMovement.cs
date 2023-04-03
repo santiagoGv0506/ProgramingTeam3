@@ -24,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
         
         player.velocity = new Vector2(Input.GetAxis("Horizontal")*moveSpeed, player.velocity.y);
       
-        if (Input.GetKey("w") && GroundCheck.isGrounded)
+        if (GroundCheck.isGrounded)
         {
-            player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+            player.velocity = new Vector2(player.velocity.x, Input.GetAxis("Jump")*jumpSpeed);
         }
         if (betterJump)
         {
