@@ -18,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private bool puedeHacerDash = true;
     private bool puedeMoverse = true;
     private bool DoubleJump;
+    private Vector3 respawnPoint;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         gravedadInicial = player.gravityScale;
+        respawnPoint = player.position;
     }
 
 
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         if (GroundCheck.isGrounded) {
             DoubleJump = true;
         }
+
     }
 
     private IEnumerator Dash()
@@ -86,5 +89,16 @@ public class PlayerMovement : MonoBehaviour
         puedeMoverse = true; player.gravityScale = gravedadInicial;
         yield return new WaitForSeconds(cooldown);
         puedeHacerDash=true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Instakill")) 
+        {
+            transform.position = respawnPoint;
+        }
+        else if (collision.transform.CompareTag("CheckPoint"))
+        {
+            respawnPoint = transform.position;
+        }
     }
 }
