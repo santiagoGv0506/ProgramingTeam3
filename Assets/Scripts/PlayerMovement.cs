@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetAxis("Fire1")>0 && puedeHacerDash) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && puedeHacerDash) {
             StartCoroutine(Dash());
         }
     }

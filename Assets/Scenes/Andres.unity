@@ -593,7 +593,7 @@ MonoBehaviour:
   betterJump: 1
   fallMultiplier: 0.5
   lowJumpMultiplier: 1
-  velocidadDash: 20
+  velocidadDash: 12
   tiempoDash: 0.4
 --- !u!50 &688929611
 Rigidbody2D:
