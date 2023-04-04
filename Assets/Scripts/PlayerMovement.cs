@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float gravedadInicial;
     private bool puedeHacerDash = true;
     private bool puedeMoverse = true;
+    private bool DoubleJump;
 
     void Start()
     {
@@ -34,9 +35,19 @@ public class PlayerMovement : MonoBehaviour
         }
       
 
-        if ((Input.GetKeyDown("w") || Input.GetKeyDown("space")) && GroundCheck.isGrounded)
+        if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
         {
-            player.velocity = new Vector2(player.velocity.x,jumpSpeed);
+            if (GroundCheck.isGrounded)
+            {
+                player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+            }
+            else if (DoubleJump)
+            {
+                player.velocity = Vector2.zero;
+                player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+                DoubleJump = false;
+            }
+            
         }
 
         if (betterJump)
@@ -54,6 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && puedeHacerDash) {
             StartCoroutine(Dash());
+        }
+        if (GroundCheck.isGrounded) {
+            DoubleJump = true;
         }
     }
 
