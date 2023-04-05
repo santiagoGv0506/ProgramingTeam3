@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if(puedeMoverse)
         {
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, player.velocity.y);
+            
         }
       
 
