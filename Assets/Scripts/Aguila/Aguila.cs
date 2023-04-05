@@ -5,15 +5,15 @@ using UnityEngine;
 public class Aguila : MonoBehaviour
 {
     public float speed = 0.5f;
-    public float waitTime;
     public Transform[] moveSpots;
-    public float startWaitTime = 2;
     private int i = 0;
     private Vector2 actualPos;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        waitTime = startWaitTime;
+
     }
 
     void Update()
@@ -24,8 +24,6 @@ public class Aguila : MonoBehaviour
 
         if(Vector2.Distance(transform.position, moveSpots[i].transform.position) < 1.0f)
         {
-            if (waitTime <= 0)
-            {
                 if (moveSpots[i] != moveSpots[moveSpots.Length - 1])
                 {
                     i++;
@@ -34,12 +32,6 @@ public class Aguila : MonoBehaviour
                 {
                     i=0;
                 }
-                waitTime = startWaitTime;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
         }
     }
 
@@ -51,14 +43,11 @@ public class Aguila : MonoBehaviour
 
         if(transform.position.x > actualPos.x)
         {
-            //se mueve a la derecha
+            spriteRenderer.flipX = true;
         }
         else if(transform.position.x < actualPos.x)
         {
-            //se mueve a la izquierda
-        }else if (transform.position.x == actualPos.x)
-        {
-            //idle
+            spriteRenderer.flipX=false;
         }
     }
 }

@@ -5,21 +5,16 @@ using UnityEngine;
 public class ataque : MonoBehaviour
 {
     public float distanceRaycast = 10f;
-
+    public GameObject Aguila;
     public GameObject Picada;
-
-    public float cooldownAttack=3f;
-    private float actualCooldownAttack;
 
     void Start()
     {
-        actualCooldownAttack = 0;
     }
 
 
     void Update()
     {
-        actualCooldownAttack -= Time.deltaTime;
         Debug.DrawRay(transform.position, Vector2.down, Color.red, distanceRaycast);
     }
 
@@ -29,11 +24,11 @@ public class ataque : MonoBehaviour
 
         if (hit2D.collider != null)
         {
-            if (hit2D.collider.CompareTag("Player") && actualCooldownAttack<0)
+            if (hit2D.collider.CompareTag("Player"))
             {
-                Invoke("CaerEnPicada", 0.5f);
                 //aqui iria la animacion
-                actualCooldownAttack = cooldownAttack;
+                Invoke("CaerEnPicada",0.1f);
+                Destroy(Aguila,0.1f);
             }
         }
     }

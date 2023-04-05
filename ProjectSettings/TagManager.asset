@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CheckPoint
   - Instakill
+  - suelo
   layers:
   - Default
   - TransparentFX
