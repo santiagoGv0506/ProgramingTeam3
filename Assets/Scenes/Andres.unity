@@ -1027,7 +1027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 2.83, z: -10}
+  m_LocalPosition: {x: 40.19, y: 1.21, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1596,7 +1596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688929609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 2.83, z: 0}
+  m_LocalPosition: {x: 40.19, y: 1.21, z: 0}
   m_LocalScale: {x: 2.3591, y: 2.2943, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1800,7 +1800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778916607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 2.83, z: -10}
+  m_LocalPosition: {x: 40.19, y: 1.21, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2804,9 +2804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49f1c855d2465c4f9c4907368d64973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceRaycast: 1
+  distanceRaycast: 10
   Picada: {fileID: 2895662116335308467, guid: e2742d0f448d9784f8880ef92ed09254, type: 3}
-  cooldownAttack: 20
+  cooldownAttack: 3
 --- !u!1 &1486477665
 GameObject:
   m_ObjectHideFlags: 0

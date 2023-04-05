@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ataque : MonoBehaviour
 {
-    public float distanceRaycast = 1f;
+    public float distanceRaycast = 10f;
 
     public GameObject Picada;
 
