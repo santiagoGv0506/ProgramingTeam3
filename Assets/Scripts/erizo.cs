@@ -8,7 +8,7 @@ public class erizo : MonoBehaviour
     public Transform[] moveSpots;
     private int i;
     public float speed = 2;
-    private float vidaCont;
+    public float vidaCont = 10;
     private Animator animator;
     private float waitTime;
     private float startWaitTime = 1f;
@@ -20,13 +20,13 @@ public class erizo : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        vidaCont = 10;
+        
         waitTime = startWaitTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("player")) 
+        if (collision.transform.CompareTag("Player")) 
         {
             GameManager.instance.perderVida();
         }
@@ -89,10 +89,10 @@ public class erizo : MonoBehaviour
         }
     }
 
-     IEnumerator getDamage(float damage)
+     public void getDamage(float damage)
     {
         animator.Play("hit");
-        yield return new WaitForSeconds(0.1f);
+        
         vidaCont-=damage;
         if (vidaCont<=0)
         {
