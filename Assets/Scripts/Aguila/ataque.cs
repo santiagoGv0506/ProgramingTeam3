@@ -27,8 +27,8 @@ public class ataque : MonoBehaviour
             if (hit2D.collider.CompareTag("Player"))
             {
                 //aqui iria la animacion
-                Invoke("CaerEnPicada",0.1f);
-                Destroy(Aguila,0.1f);
+                Invoke("CaerEnPicada",0);
+                Destroy(Aguila,5f);
             }
         }
     }
