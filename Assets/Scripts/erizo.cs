@@ -13,6 +13,8 @@ public class erizo : MonoBehaviour
     private float waitTime;
     private float startWaitTime = 1f;
     public float dir;
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +24,12 @@ public class erizo : MonoBehaviour
         waitTime = startWaitTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.transform.CompareTag("player")) 
+        {
+            GameManager.instance.perderVida();
+        }
     }
 
     private void FixedUpdate()

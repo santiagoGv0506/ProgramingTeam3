@@ -149,6 +149,7 @@ public class Aguila : MonoBehaviour
     {   
         if (collision.transform.CompareTag("Player"))
         {
+            StopCoroutine(movim);
             GameManager.instance.perderVida();
             Destroy(aguila);
         }
