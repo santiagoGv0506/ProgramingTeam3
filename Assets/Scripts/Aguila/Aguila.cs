@@ -149,7 +149,6 @@ public class Aguila : MonoBehaviour
     {   
         if (collision.transform.CompareTag("Player"))
         {
-           
             GameManager.instance.perderVida();
             Destroy(aguila);
         }
