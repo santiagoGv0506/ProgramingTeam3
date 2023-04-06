@@ -8,6 +8,7 @@ TagManager:
   - Instakill
   - suelo
   - checker
+  - Enemy
   layers:
   - Default
   - TransparentFX
