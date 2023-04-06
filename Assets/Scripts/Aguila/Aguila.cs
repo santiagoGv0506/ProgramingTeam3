@@ -143,7 +143,7 @@ public class Aguila : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
             yield return new WaitForSeconds(0.01f);
         }
-    }
+    } 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {   
