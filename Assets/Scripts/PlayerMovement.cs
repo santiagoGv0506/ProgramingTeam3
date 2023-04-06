@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
         respawnPoint = player.position;
         animator = player.GetComponent<Animator>();
         sprite = player.GetComponent<SpriteRenderer>();
+        if (GameInfo.reachedCheckpoint)
+        {
+         Loadgame();
+        }
     }
 
 
@@ -117,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         puedeMoverse = true; player.gravityScale = gravedadInicial;
         yield return new WaitForSeconds(cooldown);
         puedeHacerDash=true;
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -126,7 +131,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.transform.CompareTag("CheckPoint"))
         {
-            respawnPoint = transform.position;
+
+            Safegame();
         }
+    }
+    private void Safegame()
+    {
+        GameInfo.position = transform.position;
+        GameInfo.reachedCheckpoint = true;
+    }
+    private void Loadgame()
+    {
+        transform.position = GameInfo.position;
     }
 }

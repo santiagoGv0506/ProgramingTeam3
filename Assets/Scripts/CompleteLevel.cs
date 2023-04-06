@@ -10,6 +10,7 @@ public class CompleteLevel : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            GameInfo.reachedCheckpoint = false;
             Invoke("Completelevel", 2f);
 
         }
