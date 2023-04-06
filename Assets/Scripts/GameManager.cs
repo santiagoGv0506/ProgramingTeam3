@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,12 +19,19 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        
+        if (lifes < 1)
+        {
+            transform.position = PlayerMovement.respawnPoint;
+        }
     }
 
     public void perderVida()
     {
         lifes -= 1;
+        if(lifes == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
         hud.Desactivarvidas(lifes);
     }
 }

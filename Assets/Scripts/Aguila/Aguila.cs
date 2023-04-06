@@ -149,7 +149,13 @@ public class Aguila : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {   
+        if (collision.transform.CompareTag("Player"))
+        {
+           
+            GameManager.instance.perderVida();
+            Destroy(aguila);
+        }
         if (collision.transform.CompareTag("suelo"))
         {
             golpe = true;

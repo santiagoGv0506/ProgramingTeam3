@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private bool puedeHacerDash = true;
     private bool puedeMoverse = true;
     private bool DoubleJump;
-    private Vector3 respawnPoint;
+    public static Vector3 respawnPoint;
     Animator animator;
     private SpriteRenderer sprite;
 
@@ -38,28 +38,35 @@ public class PlayerMovement : MonoBehaviour
         if(puedeMoverse)
         {
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, player.velocity.y);
-            if (Input.GetAxis("Horizontal") ==-1)
+            if (Input.GetAxis("Horizontal") ==-1||Input.GetKeyDown("a"))
             {
                sprite.flipX = false;
-               animator.Play("Run");
+                animator.SetBool("Runing", true);
+
             }
-            else if (Input.GetAxis("Horizontal") == 1)
+            else if (Input.GetAxis("Horizontal") == 1 || Input.GetKeyDown("d"))
             {
                 sprite.flipX = true;
-                animator.Play("Run");
+                animator.SetBool("Runing", true);
             }
             else
             {
-                animator.Play("IDLE");
+                animator.SetBool("Runing", false);
             }
         }
 
 
-
+        if (GroundCheck.isGrounded == false)
+        {
+            animator.SetBool("Jump", true);
+            animator.SetBool("Runing", false);
+        }
         if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
         {
+            
             if (GroundCheck.isGrounded)
             {
+                animator.SetBool("Jump", true);
                 player.velocity = new Vector2(player.velocity.x, jumpSpeed);
             }
             else if (DoubleJump)
@@ -89,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (GroundCheck.isGrounded) {
             DoubleJump = true;
+            animator.SetBool("Jump", false);
         }
 
     }
