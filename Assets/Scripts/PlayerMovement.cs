@@ -40,13 +40,13 @@ public class PlayerMovement : MonoBehaviour
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, player.velocity.y);
             if (Input.GetAxis("Horizontal") ==-1||Input.GetKeyDown("a"))
             {
-               sprite.flipX = false;
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
                 animator.SetBool("Runing", true);
 
             }
             else if (Input.GetAxis("Horizontal") == 1 || Input.GetKeyDown("d"))
             {
-                sprite.flipX = true;
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
                 animator.SetBool("Runing", true);
             }
             else

@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    [SerializeField]private Transform AttackController;
+    public float hitRadius;
+    public float hitDamage;
+    
     void Update()
     {
-        
+        if(Input.GetKey("j"))
+        {
+            Hit();
+        }
+    }
+
+    private void Hit()
+    {
+        Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, hitRadius);
+        foreach (Collider2D collider in objects)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(AttackController.position, hitRadius);
     }
 }
