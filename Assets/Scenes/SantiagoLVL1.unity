@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackController: {fileID: 1990006713}
   hitRadius: 0.4
-  hitDamage: 10
+  hitDamage: 5
 --- !u!1001 &691580043
 PrefabInstance:
   m_ObjectHideFlags: 0
