@@ -11,7 +11,7 @@ public class Combat : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKey("j"))
+        if(Input.GetKeyDown("j"))
         {
             Hit();
         }
@@ -24,7 +24,7 @@ public class Combat : MonoBehaviour
         {
             if (collider.CompareTag("Enemy"))
             {
-                
+                collider.transform.GetComponent<erizo>().getDamage(hitDamage);
             }
         }
     }

@@ -9,7 +9,6 @@ using UnityEngine;
 public class Aguila : MonoBehaviour
 {
     public GameObject aguila;
-    public GameObject dead;
     private float distanceRaycast = 10f;
     public float speed = 5f;
     public Transform[] moveSpots;
@@ -26,6 +25,7 @@ public class Aguila : MonoBehaviour
     public static bool isGrounded;
     private IEnumerator movim;
     private bool golpe;
+    private BoxCollider2D boxCollider;
 
     void Start()
     {
@@ -34,6 +34,7 @@ public class Aguila : MonoBehaviour
         largo = new Vector2(4.33f, -2.5f);
         medio = new Vector2(3.54f, -3.54f);
         corto = new Vector2(0.87f, -4.92f);
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -57,7 +58,7 @@ public class Aguila : MonoBehaviour
         {
             if (yaRoto==false)
             {
-                temp = new Vector2(8.66f * dir, -5);
+                temp = new Vector3(8.66f * dir, -5,0);
                 animator.Play("atack");
                 rotar(largoR.collider);
             }
@@ -66,7 +67,7 @@ public class Aguila : MonoBehaviour
         {
             if (yaRoto == false)
             {
-                temp = new Vector2(7.07f * dir, -7.07f);
+                temp = new Vector3(7.07f * dir, -7.07f,0);
                 animator.Play("atack");
                 rotar(medioR.collider);
             }
@@ -75,7 +76,7 @@ public class Aguila : MonoBehaviour
         {
             if (yaRoto == false)
             {
-                temp = new Vector2(1.74f * dir, -9.85f);
+                temp = new Vector3(1.74f * dir, -9.85f,0);
                 animator.Play("atack");
                 rotar(cortoR.collider);
             }
@@ -102,36 +103,30 @@ public class Aguila : MonoBehaviour
         if (golpe==true)
         {
             StopCoroutine(movim);
-            GameObject muerte;
-            muerte = Instantiate(dead, new Vector3(transform.position.x, transform.position.y, transform.position.z), new Quaternion(0, 0, 0, 1));
-            Destroy(gameObject);
+            StartCoroutine("muerte");
         }
     }
 
     IEnumerator CheckEnemyMoving()
     {
-        if (yaRoto == false)
+        yield return new WaitForSeconds(0.2f);
+
+        if (transform.position.x > actualPos.x)
         {
-
-            yield return new WaitForSeconds(0.2f);
-
-            if (transform.position.x > actualPos.x)
-            {
-                transform.rotation = Quaternion.AngleAxis(180,Vector3.up);
-                dir = 1;
-            }
-            else if (transform.position.x < actualPos.x)
-            {
-                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-                dir = -1;
-            }
+            transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            dir = 1;
+        }
+        else if (transform.position.x < actualPos.x)
+        {
+            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            dir = -1;
         }
     }
 
     void rotar(Collider2D hit)
     {
         yaRoto = true;
-        transform.right = hit.transform.position-transform.position;
+        //transform.right = hit.transform.position-transform.position;
         movim = mov(hit.transform.position);
         StartCoroutine(movim);
     }
@@ -140,19 +135,21 @@ public class Aguila : MonoBehaviour
     {
         target = temp + target;
         yield return new WaitForSeconds(0.59f);
-        transform.rotation = new Quaternion(0, 0, -0.191973925f, -0.981400073f);
+
+        transform.LookAt(target);
+
         while (actualPos != target)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
             yield return new WaitForSeconds(0.01f);
         }
-    }
+    } 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {   
         if (collision.transform.CompareTag("Player"))
         {
-           
+            StopCoroutine(movim);
             GameManager.instance.perderVida();
             Destroy(aguila);
         }
@@ -160,5 +157,13 @@ public class Aguila : MonoBehaviour
         {
             golpe = true;
         }
+    }
+
+    IEnumerator muerte()
+    {
+        boxCollider.enabled = false;
+        animator.Play("muerte");
+        yield return new WaitForSeconds(2.17f);
+        Destroy(aguila);
     }
 }
