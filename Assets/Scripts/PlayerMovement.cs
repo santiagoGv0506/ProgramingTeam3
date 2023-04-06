@@ -19,12 +19,16 @@ public class PlayerMovement : MonoBehaviour
     private bool puedeMoverse = true;
     private bool DoubleJump;
     private Vector3 respawnPoint;
+    Animator animator;
+    private SpriteRenderer sprite;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         gravedadInicial = player.gravityScale;
         respawnPoint = player.position;
+        animator = player.GetComponent<Animator>();
+        sprite = player.GetComponent<SpriteRenderer>();
     }
 
 
@@ -34,9 +38,23 @@ public class PlayerMovement : MonoBehaviour
         if(puedeMoverse)
         {
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, player.velocity.y);
-            
+            if (Input.GetAxis("Horizontal") ==-1)
+            {
+               sprite.flipX = false;
+               animator.Play("Run");
+            }
+            else if (Input.GetAxis("Horizontal") == 1)
+            {
+                sprite.flipX = true;
+                animator.Play("Run");
+            }
+            else
+            {
+                animator.Play("IDLE");
+            }
         }
-      
+
+
 
         if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
         {

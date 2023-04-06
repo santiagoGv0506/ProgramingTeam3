@@ -8,6 +8,7 @@ public class Picada : MonoBehaviour
     public GameObject Muerte;
     public GameObject spawn;
 
+
     private void Start()
     {
         
@@ -20,13 +21,18 @@ public class Picada : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.CompareTag("Player"))
+        {
+            GameManager.instance.perderVida();
+        }
+ 
         if (collision.transform.CompareTag("suelo"))
         {
             GameObject newTonto;
             newTonto = Instantiate(Muerte, spawn.transform.position, transform.rotation);
-            //crear el nuevo objeto
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        
     }
 }
