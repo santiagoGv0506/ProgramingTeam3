@@ -60,7 +60,6 @@ public class Aguila : MonoBehaviour
             if (yaRoto==false)
             {
                 temp = new Vector3(8.66f * dir, -5,0);
-                animator.Play("atack");
                 rotar(largoR.collider);
             }
         }
@@ -69,7 +68,6 @@ public class Aguila : MonoBehaviour
             if (yaRoto == false)
             {
                 temp = new Vector3(7.07f * dir, -7.07f,0);
-                animator.Play("atack");
                 rotar(medioR.collider);
             }
         }
@@ -78,7 +76,6 @@ public class Aguila : MonoBehaviour
             if (yaRoto == false)
             {
                 temp = new Vector3(1.74f * dir, -9.85f,0);
-                animator.Play("atack");
                 rotar(cortoR.collider);
             }
         }
@@ -135,7 +132,8 @@ public class Aguila : MonoBehaviour
     IEnumerator mov(Vector2 target)
     {
         target = temp + target;
-        yield return new WaitForSeconds(0.59f);
+        animator.Play("atack");
+        yield return new WaitForSeconds(0.55f);
 
         transform.LookAt(target);
 

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool puedeHacerDash = true;
     private bool puedeMoverse = true;
     private bool DoubleJump;
+    private bool muerto;
     public static Vector3 respawnPoint;
     Animator animator;
     private SpriteRenderer sprite;
@@ -148,5 +149,15 @@ public class PlayerMovement : MonoBehaviour
     public void setMov()
     {
         puedeMoverse=false;
+    }
+
+    public void setMuerto()
+    {
+        muerto=true;
+    }
+
+    public bool getMuerto()
+    {
+        return muerto;
     }
 }
