@@ -77,7 +77,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04700008, y: -0.7199472}
+  m_Offset: {x: 0.04700008, y: -0.744979}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8954801, y: 0.19936365}
+  m_Size: {x: 0.8954801, y: 0.14930058}
   m_EdgeRadius: 0
 --- !u!114 &5785786347790067221
 MonoBehaviour:
@@ -111,12 +111,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5785786347947969768}
-  - component: {fileID: 5785786347947969771}
   - component: {fileID: 5785786347947969770}
   - component: {fileID: 5785786347947969773}
   - component: {fileID: 5785786347947969772}
   - component: {fileID: 5785786347947969769}
   - component: {fileID: 698601889949007388}
+  - component: {fileID: 7948979475203218590}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -141,32 +141,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5785786347947969771
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5785786347947969775}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 59efb4bf6fff81a448f8f94a553513c4, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.017683089, y: -0.03252256}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.47446448, y: 0.53668517}
-    oldSize: {x: 0.75, y: 1.01}
-    newSize: {x: 0.75, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5811082, y: 0.99950385}
-  m_EdgeRadius: 0
 --- !u!212 &5785786347947969770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -296,3 +270,19 @@ MonoBehaviour:
   AttackController: {fileID: 698601890964738805}
   hitRadius: 0.4
   hitDamage: 5
+--- !u!70 &7948979475203218590
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785786347947969775}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 59efb4bf6fff81a448f8f94a553513c4, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.019151654, y: -0.02614168}
+  m_Size: {x: 0.60900444, y: 1.0143641}
+  m_Direction: 0
