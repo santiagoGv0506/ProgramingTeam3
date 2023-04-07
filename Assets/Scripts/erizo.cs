@@ -98,7 +98,6 @@ public class erizo : MonoBehaviour
         {
             StartCoroutine("muerte");
         }
-        animator.Play("run");
     }
 
     IEnumerator muerte()

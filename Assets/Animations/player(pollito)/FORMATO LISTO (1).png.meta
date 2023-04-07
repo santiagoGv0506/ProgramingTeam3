@@ -251,7 +251,7 @@ TextureImporter:
         width: 71
         height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,6 +259,27 @@ TextureImporter:
       bones: []
       spriteID: 1a5f70949427f804094116136bbcb255
       internalID: 14935170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FORMATO LISTO (1)_7
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 199
+        width: 72
+        height: 100
+      alignment: 9
+      pivot: {x: 0.48680857, y: 0.5593617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfe3c61da39a274cb63ee13efdab757
+      internalID: -1753680049
       vertices: []
       indices: 
       edges: []
@@ -281,6 +302,7 @@ TextureImporter:
       FORMATO LISTO (1)_4: -278428408
       FORMATO LISTO (1)_5: -2114525179
       FORMATO LISTO (1)_6: -1300332655
+      FORMATO LISTO (1)_7: -1559101881
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
