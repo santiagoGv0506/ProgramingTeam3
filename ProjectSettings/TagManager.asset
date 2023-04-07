@@ -49,3 +49,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Lodo
+    uniqueID: 1443885725
+    locked: 0
