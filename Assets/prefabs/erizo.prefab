@@ -44,10 +44,9 @@ GameObject:
   - component: {fileID: 2767175394836993241}
   - component: {fileID: 2767175394836993246}
   - component: {fileID: 2767175394836993243}
-  - component: {fileID: 33376256}
   m_Layer: 0
   m_Name: sprite erizo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +117,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!61 &2767175394836993241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +131,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07583678, y: -0.024358511}
+  m_Offset: {x: -0.30958164, y: 0.40564513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5627262, y: 0.3507936}
@@ -143,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1132958, y: 1.9646144}
+  m_Size: {x: 3.2832882, y: 2.8246217}
   m_EdgeRadius: 0
 --- !u!95 &2767175394836993246
 Animator:
@@ -183,28 +182,6 @@ MonoBehaviour:
   - {fileID: 2767175394839395070}
   speed: 2
   vidaCont: 10
-  dir: 0
---- !u!50 &33376256
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2767175394836993244}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &2767175394839395071
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +193,7 @@ GameObject:
   - component: {fileID: 2767175394839395070}
   m_Layer: 0
   m_Name: waypoint 2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +224,7 @@ GameObject:
   - component: {fileID: 2767175394850346827}
   m_Layer: 0
   m_Name: erizo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,8 +236,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2767175394850346824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.232, y: -1.532, z: 1.0341294}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.555195, y: -1.54, z: 1.0341294}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

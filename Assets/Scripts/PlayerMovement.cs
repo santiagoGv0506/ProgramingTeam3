@@ -144,4 +144,9 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = GameInfo.position;
     }
+    
+    public void setMov()
+    {
+        puedeMoverse=false;
+    }
 }

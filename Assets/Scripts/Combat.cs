@@ -14,7 +14,7 @@ public class Combat : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {
             Hit();
-            GetComponent<Animator>().Play("Attack");
+            StartCoroutine("hit");
         }
     }
 
@@ -34,5 +34,12 @@ public class Combat : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(AttackController.position, hitRadius);
+    }
+
+    IEnumerator hit()
+    {
+        GetComponent<Animator>().Play("Attack");
+        yield return new WaitForSeconds(0.15f);
+        GetComponent<Animator>().Play("IDLE");
     }
 }

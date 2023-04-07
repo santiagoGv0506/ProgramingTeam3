@@ -158,6 +158,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: FORMATO LISTO-_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 699
+        width: 75
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb373f8cb989944d94e2404ad4cb54b
+      internalID: -1175597845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -171,6 +192,7 @@ TextureImporter:
     nameFileIdTable:
       FORMATO LISTO-_0: -1102328835
       FORMATO LISTO-_1: -1198709867
+      FORMATO LISTO-_2: -1175597845
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

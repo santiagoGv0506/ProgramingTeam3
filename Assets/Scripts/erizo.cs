@@ -12,22 +12,21 @@ public class erizo : MonoBehaviour
     private Animator animator;
     private float waitTime;
     private float startWaitTime = 1f;
-    public float dir;
+    private float dir;
+    private bool puedeMoverse;
+    private bool muerto;
 
-    
-    
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        
+        puedeMoverse = true;
         waitTime = startWaitTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player")) 
+        if (collision.transform.CompareTag("Player"))
         {
             GameManager.instance.perderVida();
         }
@@ -38,24 +37,27 @@ public class erizo : MonoBehaviour
         actualPos = transform.position;
         StartCoroutine(CheckEnemyMoving());
 
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].transform.position, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, moveSpots[i].transform.position) < 1.0f)
+        if (puedeMoverse)
         {
-            if (waitTime <= 0)
+            transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].transform.position, speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, moveSpots[i].transform.position) < 1.0f)
             {
-                if (moveSpots[i] != moveSpots[moveSpots.Length - 1])
+                if (waitTime <= 0)
                 {
-                    i++;
+                    if (moveSpots[i] != moveSpots[moveSpots.Length - 1])
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        i = 0;
+                    }
+                    waitTime = startWaitTime;
                 }
                 else
                 {
-                    i = 0;
+                    waitTime -= Time.deltaTime;
                 }
-                waitTime = startWaitTime;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
             }
         }
     }
@@ -76,7 +78,7 @@ public class erizo : MonoBehaviour
             animator.Play("run");
             dir = -1;
         }
-        else if(transform.position.x == actualPos.x)
+        else if (transform.position.x == actualPos.x)
         {
             if (dir == 1)
             {
@@ -86,25 +88,51 @@ public class erizo : MonoBehaviour
             {
                 transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
             }
+            if (puedeMoverse)
+            {
+                animator.Play("idle");
+            }
+        }
+    }
+
+    public void getDamage(float damage)
+    {
+        StartCoroutine("hit");
+
+        vidaCont -= damage;
+        if (vidaCont <= 0)
+        {
+            muerto = true;
+        }
+    }
+
+
+    IEnumerator hit()
+    {
+        if (muerto)
+        {
+            puedeMoverse = false;
+            animator.SetBool("muerto", true);
+            animator.Play("death");
+            yield return new WaitForSeconds(1.29f);
+            Destroy(gameObject);
+        }
+        else
+        {
+            puedeMoverse = false;
+            if (dir == 1)
+            {
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            }
+            else if (dir == -1)
+            {
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            }
+            
+            animator.Play("hit");
+            yield return new WaitForSeconds(0.5f);
+            puedeMoverse = true;
             animator.Play("idle");
         }
-    }
-
-     public void getDamage(float damage)
-    {
-        animator.Play("hit");
-        
-        vidaCont-=damage;
-        if (vidaCont<=0)
-        {
-            StartCoroutine("muerte");
-        }
-    }
-
-    IEnumerator muerte()
-    {
-        animator.Play("death");
-        yield return new WaitForSeconds(0.25f);
-        Destroy(gameObject);
     }
 }

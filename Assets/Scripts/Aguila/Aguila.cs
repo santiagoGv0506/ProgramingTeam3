@@ -151,7 +151,6 @@ public class Aguila : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             StopCoroutine(movim);
-            player.GetComponent<Animator>().Play("Hit");
             GameManager.instance.perderVida();
             Destroy(aguila);
         }
