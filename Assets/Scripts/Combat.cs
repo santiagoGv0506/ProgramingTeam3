@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-
+    PlayerMovement a;
     [SerializeField]private Transform AttackController;
     public float hitRadius;
     public float hitDamage;
@@ -12,9 +12,14 @@ public class Combat : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("j"))
-        {
-            Hit();
-            StartCoroutine("hit");
+        {  
+            a = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+            a.setMuerto();
+            if (!a.getMuerto())
+            {
+                Hit();
+                StartCoroutine("hit");
+            }
         }
     }
 

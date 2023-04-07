@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
         a = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         a.setMov();
         a.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        a = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        a.setMuerto();
         player.GetComponent<Animator>().Play("Death");
         yield return new WaitForSeconds(1f);
         player.GetComponent<Animator>().Play("IDLE");
