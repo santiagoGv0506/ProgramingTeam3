@@ -26,7 +26,7 @@ public class Aguila : MonoBehaviour
     private IEnumerator movim;
     private bool golpe;
     private BoxCollider2D boxCollider;
-    public GameObject player;
+  
 
     void Start()
     {
@@ -151,7 +151,6 @@ public class Aguila : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             StopCoroutine(movim);
-            player.GetComponent<Animator>().Play("Hit");
             GameManager.instance.perderVida();
             Destroy(aguila);
         }
