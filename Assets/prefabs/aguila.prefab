@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 6511147506318378296}
   animator: {fileID: 6511147506058197142}
   spriteRenderer: {fileID: 6511147506058197225}
+  player: {fileID: 5785786347947969775, guid: a31e2445126dd894dac4bc5c432e641f, type: 3}
 --- !u!212 &6511147506058197225
 SpriteRenderer:
   m_ObjectHideFlags: 0

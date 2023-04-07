@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 8979257003733624588, guid: bdef14710190f2b418f874b94073d8f2, type: 3}
+  player: {fileID: 5785786347947969775, guid: a31e2445126dd894dac4bc5c432e641f, type: 3}

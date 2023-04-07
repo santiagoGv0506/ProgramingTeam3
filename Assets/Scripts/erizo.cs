@@ -13,6 +13,7 @@ public class erizo : MonoBehaviour
     private float waitTime;
     private float startWaitTime = 1f;
     public float dir;
+
     
     
 

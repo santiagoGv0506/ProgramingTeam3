@@ -183,6 +183,7 @@ MonoBehaviour:
   speed: 2
   vidaCont: 10
   dir: 0
+  player: {fileID: 5785786347947969775, guid: a31e2445126dd894dac4bc5c432e641f, type: 3}
 --- !u!1 &2767175394839395071
 GameObject:
   m_ObjectHideFlags: 0
