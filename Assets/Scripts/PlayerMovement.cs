@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.transform.CompareTag("CheckPoint"))
         {
-
+            collision.GetComponent<Animator>().Play("check");
             Safegame();
         }
     }

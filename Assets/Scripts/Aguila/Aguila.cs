@@ -97,9 +97,10 @@ public class Aguila : MonoBehaviour
         }
 
 
-        if (golpe==true)
+        if (checkAguila.groundAguila)
         {
             StopCoroutine(movim);
+            GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine("muerte");
         }
 
@@ -135,8 +136,6 @@ public class Aguila : MonoBehaviour
         animator.Play("atack");
         yield return new WaitForSeconds(0.55f);
 
-        transform.LookAt(target);
-
         while (actualPos != target)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
@@ -156,7 +155,6 @@ public class Aguila : MonoBehaviour
 
     IEnumerator muerte()
     {
-        boxCollider.enabled = false;
         animator.Play("muerte");
         yield return new WaitForSeconds(2.17f);
         Destroy(aguila);

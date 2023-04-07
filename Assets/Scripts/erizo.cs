@@ -20,7 +20,6 @@ public class erizo : MonoBehaviour
 
     void Start()
     {
-        GetComponentInParent<BoxCollider2D>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = true;
         animator = GetComponent<Animator>();
         puedeMoverse = true;
