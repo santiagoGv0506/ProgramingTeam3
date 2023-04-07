@@ -15,10 +15,13 @@ public class erizo : MonoBehaviour
     private float dir;
     private bool puedeMoverse;
     private bool muerto;
+    public GameObject padre;
 
 
     void Start()
     {
+        GetComponentInParent<BoxCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = true;
         animator = GetComponent<Animator>();
         puedeMoverse = true;
         waitTime = startWaitTime;
@@ -39,8 +42,8 @@ public class erizo : MonoBehaviour
 
         if (puedeMoverse)
         {
-            transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].transform.position, speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, moveSpots[i].transform.position) < 1.0f)
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveSpots[i].transform.position.x, transform.position.y), speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, new Vector2(moveSpots[i].transform.position.x, transform.position.y)) < 1.0f)
             {
                 if (waitTime <= 0)
                 {
@@ -113,9 +116,12 @@ public class erizo : MonoBehaviour
         {
             puedeMoverse = false;
             animator.SetBool("muerto", true);
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            GetComponentInParent<BoxCollider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = false;
             animator.Play("death");
             yield return new WaitForSeconds(1.29f);
-            Destroy(gameObject);
+            Destroy(padre);
         }
         else
         {

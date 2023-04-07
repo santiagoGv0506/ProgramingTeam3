@@ -31,9 +31,9 @@ public class Aguila : MonoBehaviour
     {
         yaRoto = false;
         golpe = false;
-        largo = new Vector2(4.33f, -2.5f);
-        medio = new Vector2(3.54f, -3.54f);
-        corto = new Vector2(0.87f, -4.92f);
+        largo = new Vector2(8.66f, -5f);
+        medio = new Vector2(7.07f, -7.07f);
+        corto = new Vector2(1.74f, -9.85f);
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -47,9 +47,9 @@ public class Aguila : MonoBehaviour
 
         StartCoroutine(CheckEnemyMoving()); //para la animacion del personaje
 
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(largo.x * dir, largo.y) * distanceRaycast, Color.red);
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(medio.x * dir, medio.y) * distanceRaycast, Color.green);
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(corto.x * dir, corto.y) * distanceRaycast, Color.blue);
+        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(largo.x * dir, largo.y) , Color.red);
+        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(medio.x * dir, medio.y) , Color.green);
+        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(corto.x * dir, corto.y) , Color.blue);
 
         RaycastHit2D largoR = Physics2D.Raycast(actualPos + new Vector2(0.25f * dir, 0), new Vector2(largo.x * dir, largo.y), distanceRaycast);
         RaycastHit2D medioR = Physics2D.Raycast(actualPos + new Vector2(0.25f * dir, 0), new Vector2(medio.x * dir, medio.y), distanceRaycast);
@@ -102,6 +102,7 @@ public class Aguila : MonoBehaviour
             StopCoroutine(movim);
             StartCoroutine("muerte");
         }
+
     }
 
     IEnumerator CheckEnemyMoving()
@@ -150,10 +151,6 @@ public class Aguila : MonoBehaviour
             StopCoroutine(movim);
             GameManager.instance.perderVida();
             Destroy(aguila);
-        }
-        if (collision.transform.CompareTag("suelo"))
-        {
-            golpe = true;
         }
     }
 
