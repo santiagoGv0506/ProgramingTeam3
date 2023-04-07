@@ -8,7 +8,7 @@ using UnityEngine;
 public class Aguila : MonoBehaviour
 {
     public GameObject aguila;
-    private float distanceRaycast = 10f;
+    private float distanceRaycast = 30f;
     public float speed = 5f;
     public Transform[] moveSpots;
     private int i = 0;
@@ -35,9 +35,6 @@ public class Aguila : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    void Update()
-    {
-    }
 
     void FixedUpdate()
     {
@@ -45,13 +42,13 @@ public class Aguila : MonoBehaviour
 
         StartCoroutine(CheckEnemyMoving()); //para la animacion del personaje
 
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(largo.x * dir, largo.y) , Color.red);
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(medio.x * dir, medio.y) , Color.green);
-        Debug.DrawRay(actualPos + new Vector2(0.25f * dir, 0), new Vector2(corto.x * dir, corto.y) , Color.blue);
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y) , Color.red);
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y) , Color.green);
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y) , Color.blue);
 
-        RaycastHit2D largoR = Physics2D.Raycast(actualPos + new Vector2(0.25f * dir, 0), new Vector2(largo.x * dir, largo.y), distanceRaycast);
-        RaycastHit2D medioR = Physics2D.Raycast(actualPos + new Vector2(0.25f * dir, 0), new Vector2(medio.x * dir, medio.y), distanceRaycast);
-        RaycastHit2D cortoR = Physics2D.Raycast(actualPos + new Vector2(0.25f * dir, 0), new Vector2(corto.x * dir, corto.y), distanceRaycast);
+        RaycastHit2D largoR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y), distanceRaycast);
+        RaycastHit2D medioR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y), distanceRaycast);
+        RaycastHit2D cortoR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y), distanceRaycast);
         if (largoR.collider != null && largoR.collider.CompareTag("Player"))
         {
             if (yaRoto==false)
