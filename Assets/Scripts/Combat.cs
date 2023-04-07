@@ -14,8 +14,7 @@ public class Combat : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {  
             a = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-            a.setMuerto();
-            if (!a.getMuerto())
+            if (a.getMuerto()==false)
             {
                 Hit();
                 StartCoroutine("hit");

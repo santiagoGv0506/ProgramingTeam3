@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         gravedadInicial = player.gravityScale;
         respawnPoint = player.position;
+        muerto = false;
         animator = player.GetComponent<Animator>();
         sprite = player.GetComponent<SpriteRenderer>();
         if (GameInfo.reachedCheckpoint)
@@ -69,22 +70,25 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
         {
-            
-            if (GroundCheck.isGrounded)
+
+            if (!muerto)
             {
-                animator.SetBool("Jump", true);
-                player.velocity = new Vector2(player.velocity.x, jumpSpeed);
-            }
-            else if (DoubleJump)
-            {
-                player.velocity = Vector2.zero;
-                player.velocity = new Vector2(player.velocity.x, jumpSpeed);
-                DoubleJump = false;
+                if (GroundCheck.isGrounded)
+                {
+                    animator.SetBool("Jump", true);
+                    player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+                }
+                else if (DoubleJump)
+                {
+                    player.velocity = Vector2.zero;
+                    player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+                    DoubleJump = false;
+                }
             }
             
         }
 
-        if (betterJump)
+        if (betterJump && !muerto)
         {
             if (player.velocity.y < 0)
             {
