@@ -33,6 +33,7 @@ public class erizo : MonoBehaviour
             GameManager.instance.perderVida();
         }
     }
+   
 
     private void FixedUpdate()
     {

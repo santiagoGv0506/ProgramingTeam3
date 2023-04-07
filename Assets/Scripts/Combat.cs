@@ -27,7 +27,7 @@ public class Combat : MonoBehaviour
         Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, hitRadius);
         foreach (Collider2D collider in objects)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Enemy") && collider.isTrigger)
             {
                 collider.transform.GetComponent<erizo>().getDamage(hitDamage);
             }
