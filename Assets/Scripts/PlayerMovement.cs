@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", true);
             animator.SetBool("Runing", false);
         }
-        if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("w"))
         {
 
             if (!muerto)
@@ -94,11 +94,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 player.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier) * Time.deltaTime;
             }
-            if (player.velocity.y > 0 && !Input.GetKey("w"))
+            if (player.velocity.y > 0 && !Input.GetKey(KeyCode.W))
             {
                 player.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier) * Time.deltaTime;
 
             }
+
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && puedeHacerDash) {
