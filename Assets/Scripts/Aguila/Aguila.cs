@@ -23,14 +23,12 @@ public class Aguila : MonoBehaviour
     private Vector2 temp;
     public static bool isGrounded;
     private IEnumerator movim;
-    private bool golpe;
     private BoxCollider2D boxCollider;
   
 
     void Start()
     {
         yaRoto = false;
-        golpe = false;
         largo = new Vector2(8.66f, -5f);
         medio = new Vector2(7.07f, -7.07f);
         corto = new Vector2(1.74f, -9.85f);
