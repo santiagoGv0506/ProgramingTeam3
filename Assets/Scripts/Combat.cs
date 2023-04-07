@@ -14,6 +14,7 @@ public class Combat : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {
             Hit();
+            GetComponent<Animator>().Play("Attack");
         }
     }
 

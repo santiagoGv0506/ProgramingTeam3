@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public HUD hud;
     public static GameManager instance { get; private set; }
-
+    public GameObject player;
     private int lifes = 3;
 
     private void Awake()
@@ -28,9 +28,14 @@ public class GameManager : MonoBehaviour
     public void perderVida()
     {
         lifes -= 1;
+        if(lifes > 1)
+        {
+            player.GetComponent<Animator>().Play("Hit");
+        }
         if(lifes == 0)
         {
-            SceneManager.LoadScene(0);
+            player.GetComponent<Animator>().Play("Death");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         hud.Desactivarvidas(lifes);
     }

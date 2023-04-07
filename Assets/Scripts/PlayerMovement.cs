@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.transform.CompareTag("Instakill")) 
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else if (collision.transform.CompareTag("CheckPoint"))
         {
