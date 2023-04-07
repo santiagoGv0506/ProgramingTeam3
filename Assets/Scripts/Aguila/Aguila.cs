@@ -26,7 +26,7 @@ public class Aguila : MonoBehaviour
     private IEnumerator movim;
     private bool golpe;
     private BoxCollider2D boxCollider;
-    public GameObject player;
+  
 
     void Start()
     {
