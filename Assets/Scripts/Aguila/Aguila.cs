@@ -23,15 +23,18 @@ public class Aguila : MonoBehaviour
     private Vector2 temp;
     public static bool isGrounded;
     private IEnumerator movim;
+    private IEnumerator muerto;
+    private bool colliderSapoHP;
 
 
     void Start()
     {
-        GetComponent<BoxCollider2D>().enabled = true;
+        muerto = muerte();
         yaRoto = false;
         largo = new Vector2(8.66f, -5f);
         medio = new Vector2(7.07f, -7.07f);
         corto = new Vector2(1.74f, -9.85f);
+        colliderSapoHP = true;
     }
 
 
@@ -93,9 +96,9 @@ public class Aguila : MonoBehaviour
 
         if (checkAguila.groundAguila)
         {
+            colliderSapoHP = false;
             StopCoroutine(movim);
-            GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine("muerte");
+            StartCoroutine(muerto);
         }
 
     }
@@ -139,7 +142,7 @@ public class Aguila : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player") && colliderSapoHP)
         {
             StopCoroutine(movim);
             GameManager.instance.perderVida();
@@ -149,6 +152,8 @@ public class Aguila : MonoBehaviour
 
     IEnumerator muerte()
     {
+        checkAguila.groundAguila = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         animator.Play("muerte");
         yield return new WaitForSeconds(2.17f);
         Destroy(aguila);
