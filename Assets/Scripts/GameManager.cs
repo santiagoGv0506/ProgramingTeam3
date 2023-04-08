@@ -40,6 +40,16 @@ public class GameManager : MonoBehaviour
         }
         hud.Desactivarvidas(lifes);
     }
+    public bool GanarVida()
+    {
+        if(lifes == 3)
+        {
+            return false; 
+        }
+        hud.Activarvidas(lifes);
+        lifes += 1;
+        return true;
+    }
 
     IEnumerator hit()
     {
