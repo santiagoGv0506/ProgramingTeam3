@@ -13,7 +13,7 @@ public class HUD : MonoBehaviour
     }
     public void Desactivarvidas(int index)
     {
-        lifes[index].gameObject.SetActive(false);
+            lifes[index].gameObject.SetActive(false);
     }
 
     public void Activarvidas(int index)
