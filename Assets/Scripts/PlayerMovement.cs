@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     private SpriteRenderer sprite;
     [SerializeField] private Vector2 BounceSpeed;
+    public TextMeshProUGUI textoTimer;
+    private bool startCooldown=false;
+    private float timer;
 
 
     void Start()
@@ -32,52 +36,67 @@ public class PlayerMovement : MonoBehaviour
         gravedadInicial = player.gravityScale;
         respawnPoint = player.position;
         muerto = false;
-        animator = player.GetComponent<Animator>();
         sprite = player.GetComponent<SpriteRenderer>();
+        animator = transform.GetComponent<Animator>();
         if (GameInfo.reachedCheckpoint)
         {
          Loadgame();
         }
+        timer = cooldown;
     }
 
 
     void Update()
     {
-        
+        if (startCooldown)
+        {
+            timer -= Time.deltaTime;
+            textoTimer.text = "DASH " + timer.ToString("f0");
+        }
+        else
+        {
+            textoTimer.text = "DASH " + "(DISPONIBLE)";
+        }
+
         if(puedeMoverse)
         {
             player.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, player.velocity.y);
             if (Input.GetAxis("Horizontal") ==-1||Input.GetKeyDown("a"))
             {
                 transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-                animator.SetBool("Runing", true);
-
             }
             else if (Input.GetAxis("Horizontal") == 1 || Input.GetKeyDown("d"))
             {
                 transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
-                animator.SetBool("Runing", true);
-            }
-            else
-            {
-                animator.SetBool("Runing", false);
+                
             }
         }
-
-
-        if (GroundCheck.isGrounded == false)
+        if(player.velocity.x!=0 && player.velocity.y != 0)
         {
-            animator.SetBool("Jump", true);
-            animator.SetBool("Runing", false);
+            animator.SetBool("vely", true);
+            animator.SetBool("velx", true);
+        }else if(player.velocity.x != 0)
+        {
+            animator.SetBool("velx", true);
+            animator.SetBool("vely", false);
+        }else if(player.velocity.x != 0)
+        {
+            animator.SetBool("vely", true);
+            animator.SetBool("velx", false);
         }
+        else if(player.velocity.x == 0 && player.velocity.y == 0)
+        {
+            animator.SetBool("velx", false);
+            animator.SetBool("vely", false);
+        }
+
+
         if (Input.GetKeyDown("w"))
         {
-
             if (!muerto)
             {
                 if (GroundCheck.isGrounded)
                 {
-                    animator.SetBool("Jump", true);
                     player.velocity = new Vector2(player.velocity.x, jumpSpeed);
                 }
                 else if (DoubleJump)
@@ -99,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
             if (player.velocity.y > 0 && !Input.GetKey(KeyCode.W))
             {
                 player.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier) * Time.deltaTime;
-
             }
 
         }
@@ -109,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (GroundCheck.isGrounded) {
             DoubleJump = true;
-            animator.SetBool("Jump", false);
         }
 
     }
@@ -131,8 +148,12 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(tiempoDash);
         puedeMoverse = true; player.gravityScale = gravedadInicial;
+        startCooldown = true;
         yield return new WaitForSeconds(cooldown);
-        puedeHacerDash=true;
+        startCooldown = false;
+        timer = cooldown;
+        puedeHacerDash =true;
+
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
