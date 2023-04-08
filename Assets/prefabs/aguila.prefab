@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4384254240211435285}
+  - component: {fileID: 4896404330100648889}
   - component: {fileID: 3397706817032498164}
-  - component: {fileID: 3956853406644681766}
   m_Layer: 0
   m_Name: checker
-  m_TagString: checker
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,19 +33,7 @@ Transform:
   m_Father: {fileID: 6511147506058197140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3397706817032498164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2385243589774776126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e01be9189f220e49b8dc30ec3aa2494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &3956853406644681766
+--- !u!61 &4896404330100648889
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3440249, y: -2.0093493}
+  m_Offset: {x: -0.124961734, y: -1.1409392}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -69,8 +57,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1625476, y: 1.8923221}
+  m_Size: {x: 2.2483377, y: 4.0248213}
   m_EdgeRadius: 0
+--- !u!114 &3397706817032498164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385243589774776126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e01be9189f220e49b8dc30ec3aa2494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6511147505063431708
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 6511147506058197225}
   - component: {fileID: 6511147506058197142}
   - component: {fileID: 2415545818099979096}
-  - component: {fileID: 2209166593744961251}
   m_Layer: 0
   m_Name: sprite aguila
   m_TagString: Enemy
@@ -278,7 +277,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3161497, y: -0.16907799}
+  m_Offset: {x: 2.4342108, y: -0.24110085}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.20352596, y: 0.5710272}
@@ -289,29 +288,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.580387, y: 1.2227774}
+  m_Size: {x: 7.344265, y: 1.3668231}
   m_EdgeRadius: 0
---- !u!50 &2209166593744961251
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6511147506058197141}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!1 &6511147506318378297
 GameObject:
   m_ObjectHideFlags: 0
