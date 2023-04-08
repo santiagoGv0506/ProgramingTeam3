@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D player;
-
     public float moveSpeed = 2;
     public float jumpSpeed = 3;
     public bool betterJump = false;
@@ -18,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
     public float cooldown = 3;
     private float gravedadInicial;
     private bool puedeHacerDash = true;
-    private bool puedeMoverse = true;
+    public bool puedeMoverse = true;
     private bool DoubleJump;
     private bool muerto;
     public static Vector3 respawnPoint;
     Animator animator;
     private SpriteRenderer sprite;
+    [SerializeField] private Vector2 BounceSpeed;
+
 
     void Start()
     {
@@ -113,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Bounce(Vector2 placeHit)
+    {
+        player.velocity = new Vector2(-BounceSpeed.x * placeHit.x , BounceSpeed.y);
+    }
     private IEnumerator Dash()
     {
         puedeMoverse = false; puedeHacerDash = false; player.gravityScale = 0;  GroundCheck.isGrounded=false;

@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5785786347947969769}
   - component: {fileID: 698601889949007388}
   - component: {fileID: 7948979475203218590}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -234,6 +234,8 @@ MonoBehaviour:
   velocidadDash: 30
   tiempoDash: 0.07
   cooldown: 5
+  puedeMoverse: 1
+  BounceSpeed: {x: 0, y: 0}
 --- !u!95 &5785786347947969769
 Animator:
   serializedVersion: 5

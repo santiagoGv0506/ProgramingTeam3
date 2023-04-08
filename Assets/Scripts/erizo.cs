@@ -30,7 +30,7 @@ public class erizo : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            GameManager.instance.perderVida();
+            GameManager.instance.perderVida(collision.GetContact(0).normal);
         }
     }
    
