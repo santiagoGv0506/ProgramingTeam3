@@ -23,59 +23,59 @@ public class Aguila : MonoBehaviour
     private Vector2 temp;
     public static bool isGrounded;
     private IEnumerator movim;
-    private BoxCollider2D boxCollider;
+    private IEnumerator muerto;
   
 
     void Start()
     {
+        GetComponent<BoxCollider2D>().enabled = true;
         yaRoto = false;
         largo = new Vector2(8.66f, -5f);
         medio = new Vector2(7.07f, -7.07f);
         corto = new Vector2(1.74f, -9.85f);
-        boxCollider = GetComponent<BoxCollider2D>();
     }
 
 
     void FixedUpdate()
     {
         actualPos = transform.position;
+        muerto = muerte();
+        StartCoroutine(CheckEnemyMoving());
 
-        StartCoroutine(CheckEnemyMoving()); //para la animacion del personaje
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y), Color.red);
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y), Color.green);
+        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y), Color.blue);
 
-        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y) , Color.red);
-        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y) , Color.green);
-        Debug.DrawRay(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y) , Color.blue);
+        RaycastHit2D[] largoR = Physics2D.RaycastAll(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y), distanceRaycast);
+        RaycastHit2D[] medioR = Physics2D.RaycastAll(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y), distanceRaycast);
+        RaycastHit2D[] cortoR = Physics2D.RaycastAll(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y), distanceRaycast);
 
-        RaycastHit2D largoR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(largo.x * dir, largo.y), distanceRaycast);
-        RaycastHit2D medioR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(medio.x * dir, medio.y), distanceRaycast);
-        RaycastHit2D cortoR = Physics2D.Raycast(actualPos + new Vector2(0.30f * dir, 0), new Vector2(corto.x * dir, corto.y), distanceRaycast);
-        if (largoR.collider != null && largoR.collider.CompareTag("Player"))
+        foreach (RaycastHit2D hit2D in largoR)
         {
-            if (yaRoto==false)
+            if (hit2D.collider != null && hit2D.collider.CompareTag("Player") && yaRoto == false)
             {
-                temp = new Vector3(8.66f * dir, -5,0);
-                rotar(largoR.collider);
+                temp = new Vector3(8.66f * dir, -5, 0);
+                rotar(hit2D.collider);
             }
         }
-        else if(medioR.collider != null && medioR.collider.CompareTag("Player"))
+        foreach (RaycastHit2D hit2D in medioR)
         {
-            if (yaRoto == false)
+            if (hit2D.collider != null && hit2D.collider.CompareTag("Player") && yaRoto == false)
             {
-                temp = new Vector3(7.07f * dir, -7.07f,0);
-                rotar(medioR.collider);
+                temp = new Vector3(7.07f * dir, -7.07f, 0);
+                rotar(hit2D.collider);
             }
         }
-        else if(cortoR.collider != null && cortoR.collider.CompareTag("Player"))
+        foreach (RaycastHit2D hit2D in cortoR)
         {
-            if (yaRoto == false)
+            if (hit2D.collider != null && hit2D.collider.CompareTag("Player") && yaRoto == false)
             {
-                temp = new Vector3(1.74f * dir, -9.85f,0);
-                rotar(cortoR.collider);
+                temp = new Vector3(1.74f * dir, -9.85f, 0);
+                rotar(hit2D.collider);
             }
         }
 
-
-            if (yaRoto==false)
+        if (yaRoto==false)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].transform.position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, moveSpots[i].transform.position) < 1.0f)
@@ -94,9 +94,9 @@ public class Aguila : MonoBehaviour
 
         if (checkAguila.groundAguila)
         {
-            StopCoroutine(movim);
             GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine("muerte");
+            StopCoroutine(movim);
+            StartCoroutine(muerto);
         }
 
     }
@@ -150,6 +150,8 @@ public class Aguila : MonoBehaviour
 
     IEnumerator muerte()
     {
+        checkAguila.groundAguila = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         animator.Play("muerte");
         yield return new WaitForSeconds(2.17f);
         Destroy(aguila);
