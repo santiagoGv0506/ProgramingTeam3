@@ -71,20 +71,20 @@ public class PlayerMovement : MonoBehaviour
                 
             }
         }
-        if(player.velocity.x!=0 && player.velocity.y != 0)
+        if(player.velocity.x!=0 && player.velocity.y != 0 && !GroundCheck.isGrounded)
         {
             animator.SetBool("vely", true);
             animator.SetBool("velx", true);
-        }else if(player.velocity.x != 0)
+        }else if(player.velocity.x != 0 && GroundCheck.isGrounded)
         {
             animator.SetBool("velx", true);
             animator.SetBool("vely", false);
-        }else if(player.velocity.x != 0)
+        }else if(player.velocity.y != 0 && !GroundCheck.isGrounded)
         {
             animator.SetBool("vely", true);
             animator.SetBool("velx", false);
         }
-        else if(player.velocity.x == 0 && player.velocity.y == 0)
+        else if(player.velocity.x == 0 && player.velocity.y == 0 && GroundCheck.isGrounded)
         {
             animator.SetBool("velx", false);
             animator.SetBool("vely", false);
@@ -149,6 +149,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(tiempoDash);
         puedeMoverse = true; player.gravityScale = gravedadInicial;
         startCooldown = true;
+        animator.SetBool("velx", true);
+        animator.SetBool("vely", false);
         yield return new WaitForSeconds(cooldown);
         startCooldown = false;
         timer = cooldown;
